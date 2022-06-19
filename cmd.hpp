@@ -18,7 +18,7 @@ class separator{
 
 public:
     separator()=default;
-    explicit separator(char ch):ban(ch){}
+    explicit separator(const char& ch):ban(ch){}
     ~separator(){
         tokens.clear();
     }
@@ -51,6 +51,7 @@ public:
     bool empty(){
         return tokens.empty();
     }
+
     bool readLine(std::istream &is)
     {
         if(is.eof()) return false;
@@ -58,7 +59,8 @@ public:
         process();
         return true;
     }
-    vector<std::string> content(){
+    vector<std::string>& content(){
+
         return tokens;
     }
     std::string &operator[](int p){
