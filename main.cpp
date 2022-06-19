@@ -13,7 +13,7 @@ int main()
 {
 //	printf("%d\n",sizeof(HashMap) ;
  //   freopen("1.in","r",stdin);
- //   freopen("1.ans","w",stdout);
+//    freopen("1.ans","w",stdout);
     cmd ticketLibrary;
     std::ios::sync_with_stdio(false);
     ticketLibrary.run(std::cin,std::cout);
