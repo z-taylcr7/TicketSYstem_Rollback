@@ -316,7 +316,7 @@ namespace Geneva{
                 Tree->basicInfo.root = newroot.offset;
                 Tree->memoLeaf->updatePre(Tree->basicInfo);
                 Tree->rootNode = newroot;
-                std::cout<<"splitroot here"<<std::endl;
+   //             std::cout<<"splitroot here"<<std::endl;
             }
 
             splitReturn splitNode(BPlusTree *Tree) {

@@ -100,5 +100,4 @@ namespace Fourest
     }
 
 }
-
 #endif //FOUREST_SEPARATOR_H
