@@ -733,10 +733,9 @@ namespace Geneva{
         }
         void find(const string&_key,vector<std::pair<int,long long>>&res){
             unsigned long long key=stringHash(_key);
-//            if(tim==12222){
-//                std::cout<<basicInfo.size<< std::endl;
-//                std::cout<<key<<std::endl;show();
-//            }
+            if(tim==603){
+ //              std::cout<<key<<std::endl;show();
+            }
             Key defaultKey= std::make_pair(key,-9223372036854775808ll);
             if (basicInfo.size == 0 || basicInfo.root == -1)return;
             rootNode=memoInner->read(basicInfo.root);
@@ -763,6 +762,8 @@ namespace Geneva{
                             pos=0;target=memoLeaf->read(target.rightBro);
                         }
                     }
+//                    if(res.size())std::cout<<"find out one:"<<res[0].second<<' '<<res[0].first<<std::endl;
+ //                   else std::cout<<"find null"<<std::endl;
                     return;
                 }
                 else return;

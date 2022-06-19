@@ -125,11 +125,10 @@ public:
 		if(priority==-404){
 //			std::cout<<"meidenglu"<<std::endl;
 			return fail;//δ��¼
-		} 
-		
+		}
 		int id=users.get_id(username);
 		if(id<0){
-			std::cout<<"zhaobudao"<<std::endl;
+//			std::cout<<"zhaobudao"<<std::endl;
 			return fail;//�û�������
 		}
 		User user(users.get_user(id));
@@ -144,12 +143,14 @@ public:
 		users.update(id,user);
 		return user.ID_message();
 	}
-	
-	int check_priority(const string&user)const{
-		auto tmp=logged_users.find(user);
-		if(tmp==NULL) return -404;
-		return tmp->first;
-	}
+
+    int check_priority(const string&user){
+        auto tmp=logged_users.find(user);
+        if(tmp==NULL) return -404;
+        int id=users.get_id(user);
+        User xxx(users.get_user(id));
+        return xxx.priority();
+    }
 	void clean(){
 		users.clean();
 		logged_users.clear();
