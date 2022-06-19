@@ -21,7 +21,7 @@ struct ints {int value=0; ints()=default; explicit ints(int x):value(x){}};
 			delete user_data;
 		}
 		
-		int get_id(const string&username){// ÕÒµ½usernameµÄÕË»§µÄ´¢´æµØÖ· 
+		int get_id(const string&username){// ï¿½Òµï¿½usernameï¿½ï¿½ï¿½Ë»ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½Ö· 
 			vector<pair<int,ll> >temp;
 			user_index.find(username,temp);
 			if(temp.empty()) return -404;
@@ -69,27 +69,27 @@ public:
 		int priority=check_priority(ouser);
 		if(priority==-404 || priority<=privilege){
 //			std::cout<<"here1\n";
-			return 0;// ÓÃ»§²»´æÔÚ»òÈ¨ÏÞ²»¹» 
+			return 0;// ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú»ï¿½È¨ï¿½Þ²ï¿½ï¿½ï¿½ 
 		}
 		if(users.get_id(username)>=0){
 //			std::cout<<"here2\n";
-			return 0; //ÓÃ»§ÒÑ´æÔÚ 
+			return 0; //ï¿½Ã»ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½ 
 		}
 		users.add_user(username,User(username,password,name,mailAddr,privilege));
 		return 1; 
 	}
 	
 	bool login(const string&username,const string&password){
-		if(check_priority(username)!=-404) return 0;// ÒÑµÇÂ¼ 
+		if(check_priority(username)!=-404) return 0;// ï¿½Ñµï¿½Â¼ 
 		int id=users.get_id(username);
 		if(id<0){
 //			std::cout<<"GGhere"<<id<<std::endl;
-			return 0;//ÓÃ»§²»´æÔÚ 
+			return 0;//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 		} 
 		User user(users.get_user(id));
 		if(!user.check_pass(password)){
  //           std::cout<<"gghere hhh"<<std::endl;
-            return 0;//ÃÜÂë´íÎó
+            return 0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 		logged_users.insert(username,{user.priority(),user.query_ticketNum()});
 		return 1;
@@ -97,7 +97,7 @@ public:
 	bool logout(const string&username){
 //		std::cout<<"! "<<username<<" !\n";
 		auto tmp=logged_users.find(username);
-		if(tmp==NULL) return 0;//ÓÃ»§²»´æÔÚ»òÎ´µÇÂ¼ 
+		if(tmp==NULL) return 0;//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú»ï¿½Î´ï¿½ï¿½Â¼ 
 		logged_users.erase(username);
 		return 1; 
 	}
@@ -107,35 +107,35 @@ public:
 		int priority=check_priority(ouser);
 		if(priority==-404){
  //           std::cout<<"weidenglu"<<std::endl;
-            return fail;//Î´µÇÂ¼
+            return fail;//Î´ï¿½ï¿½Â¼
         }
 		
 		int id=users.get_id(username);
 		if(id<0){
 //            std::cout<<"meizhaodao"<<std::endl;
-            return fail;//ÓÃ»§²»´æÔÚ
+            return fail;//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 		User user(users.get_user(id));
-		if(user.priority()>=priority&&ouser!=username) return fail;//È¨ÏÞ²»¹»
+		if(user.priority()>=priority&&ouser!=username) return fail;//È¨ï¿½Þ²ï¿½ï¿½ï¿½
 		return user.ID_message(); 
 	}
 	string modify_profile(const string&ouser,const string&username,const string&password,const string&name,const string&mailAddr,const int&privilege){
 		string fail("-1");
 		int priority=check_priority(ouser);
 		if(priority==-404){
-			std::cout<<"meidenglu"<<std::endl; 
-			return fail;//Î´µÇÂ¼
+//			std::cout<<"meidenglu"<<std::endl;
+			return fail;//Î´ï¿½ï¿½Â¼
 		} 
 		
 		int id=users.get_id(username);
 		if(id<0){
 			std::cout<<"zhaobudao"<<std::endl;
-			return fail;//ÓÃ»§²»´æÔÚ
+			return fail;//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		User user(users.get_user(id));
 		if((user.priority()>=priority&&ouser!=username)||privilege>=priority){
-			std::cout<<user.priority()<<"wtf???"<<priority<<std::endl;
-			return fail;//È¨ÏÞ²»¹»
+//			std::cout<<user.priority()<<"wtf???"<<priority<<std::endl;
+			return fail;//È¨ï¿½Þ²ï¿½ï¿½ï¿½
 		}
 		if(password!="") user.pass()=password;
 		if(name!="") user.nam()=name;
