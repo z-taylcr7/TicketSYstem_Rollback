@@ -55,6 +55,7 @@ public:
         words.readLine(is);
         do
         {
+//            sys.printbacis();
 //        	std::cout<<"!!!"<<'\n';
 //        	tt--;if(!tt) break;
             if(words.empty()) continue;

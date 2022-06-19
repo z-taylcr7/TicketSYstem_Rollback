@@ -186,12 +186,12 @@ public:
 	bool release_train(const string&trainID){
 		int id=trains.get_id(trainID);
 		if(id<0){
- //           std::cout<<"zhaobudao"<<std::endl;
+//            std::cout<<"zhaobudao"<<std::endl;
             return 0;//�г�������
         }
 		Train  train(trains.get_train(id));
 		if(train.if_released()){
-  //          std::cout<<"yijinrlsl"<<std::endl;
+//            std::cout<<"yijinrlsl"<<std::endl;
             return 0;//�г��ѷ���
         }
 		train.release();

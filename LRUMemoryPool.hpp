@@ -239,10 +239,6 @@ namespace Geneva {
         void updatePre_Rollback(const preface &o) {
             file = fopen(filename.c_str(), "rb+");
             fseek(file, 0, SEEK_SET);
-            preface old;
-            fread(reinterpret_cast<char *>(&old), sizeof(preface), 1, file);
-            fseek(file, 0, SEEK_SET);
-
             fwrite(reinterpret_cast<const char *>(&o), sizeof(preface), 1, file);
             fclose(file);
         }

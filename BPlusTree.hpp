@@ -514,6 +514,7 @@ namespace Geneva{
 //            puts("4");
             basicInfo.head = tempNode.offset;
             basicInfo.root = rootNode.offset;
+            memoLeaf->updatePre(basicInfo);
 //            if(tim==8066)show();
         }
 
@@ -622,6 +623,10 @@ namespace Geneva{
         };
 
     public:
+    	void printbacis(){
+    		std::cout<<"basicInfo.root = "<<basicInfo.root<<std::endl;
+    		std::cout<<"rootNode.offset = "<<rootNode.offset<<std::endl;
+		}
         BPlusTree()=default;
         explicit BPlusTree(const std::string &fn) {
             memoLeaf=new MemoryPool<leafNode, preface>(fn + "'s leaves", (preface){-1,-1,0},CACHESIZE);
@@ -728,10 +733,10 @@ namespace Geneva{
         }
         void find(const string&_key,vector<std::pair<int,long long>>&res){
             unsigned long long key=stringHash(_key);
-            if(tim==12222){
-  //              std::cout<<basicInfo.size<< std::endl;
-    //            std::cout<<key<<std::endl;show();
-            }
+//            if(tim==12222){
+//                std::cout<<basicInfo.size<< std::endl;
+//                std::cout<<key<<std::endl;show();
+//            }
             Key defaultKey= std::make_pair(key,-9223372036854775808ll);
             if (basicInfo.size == 0 || basicInfo.root == -1)return;
             rootNode=memoInner->read(basicInfo.root);
@@ -777,7 +782,7 @@ namespace Geneva{
         void rollback(int ddl){
             memoLeaf->rollback(ddl);
             memoInner->rollback(ddl);
-//            basicInfo=memoLeaf->readPre();
+            basicInfo=memoLeaf->readPre();
            rootNode=memoInner->read(basicInfo.root);
         }
 

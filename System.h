@@ -76,7 +76,7 @@ struct ints {int value=0; ints()=default; explicit ints(int x):value(x){}};
 public:
 	System()=default;
 	~System()=default;
-	
+	void printbacis(){user.printbacis();} 
 	bool release_train(const string&trainID){
 		return train.release_train(trainID);
 	}

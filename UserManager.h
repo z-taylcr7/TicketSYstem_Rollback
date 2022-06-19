@@ -8,6 +8,7 @@ struct ints {int value=0; ints()=default; explicit ints(int x):value(x){}};
 		MemoryPool<User,ints>*user_data;
 		bool is_empty=1;
 	public:
+		void printbacis(){user_index.printbacis();}
 		void rollback(const int&ddl){
 			user_index.rollback(ddl);
 			user_data->rollback(ddl);
@@ -47,7 +48,7 @@ struct ints {int value=0; ints()=default; explicit ints(int x):value(x){}};
 public:
 	UserManager(){}
 	~UserManager(){logged_users.clear();}
-	
+	void printbacis(){users.printbacis();}
 	bool add_user(const string&ouser,const string&username,const string&password,const string&name,const string&mailAddr,const int&privilege){
 //		std::cout<<username<<"  GG\n"; 
 		
@@ -121,12 +122,21 @@ public:
 	string modify_profile(const string&ouser,const string&username,const string&password,const string&name,const string&mailAddr,const int&privilege){
 		string fail("-1");
 		int priority=check_priority(ouser);
-		if(priority==-404) return fail;//未登录
+		if(priority==-404){
+			std::cout<<"meidenglu"<<std::endl; 
+			return fail;//未登录
+		} 
 		
 		int id=users.get_id(username);
-		if(id<0) return fail;//用户不存在
+		if(id<0){
+			std::cout<<"zhaobudao"<<std::endl;
+			return fail;//用户不存在
+		}
 		User user(users.get_user(id));
-		if((user.priority()>=priority&&ouser!=username)||privilege>=priority) return fail;//权限不够
+		if((user.priority()>=priority&&ouser!=username)||privilege>=priority){
+			std::cout<<user.priority()<<"wtf???"<<priority<<std::endl;
+			return fail;//权限不够
+		}
 		if(password!="") user.pass()=password;
 		if(name!="") user.nam()=name;
 		if(mailAddr!="") user.mail()=mailAddr;
