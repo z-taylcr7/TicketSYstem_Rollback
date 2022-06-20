@@ -32,7 +32,6 @@ namespace Geneva{
             MIN_RECORD_NUM = (L+1) / 2,//   [ Min , Max )
             MAX_KEY_NUM = M + 1,
             MIN_KEY_NUM = (M - 1) / 2,
-            MAX_CHILD_NUM = M+2
         };
         struct preface {
             int root = -1;
@@ -433,8 +432,6 @@ namespace Geneva{
                    Tree->memoInner->update(tmp, tmp.offset);
                 }
             }
-
-            //if father need to resize,return true
             bool resize(BPlusTree *Tree, innerNode &father, int index) {
                 if (sum < MIN_KEY_NUM) {
                     if (index == 0 && rightBro >= 0) {
